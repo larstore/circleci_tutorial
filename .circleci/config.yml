@@ -6,6 +6,7 @@ jobs:
       - image: circleci/postgres:9.4.12-alpine
     working_directory: ~/testing-workflows
     steps:
+      - checkout
       - run: bundle install --path vendor/bundle
       - run: bundle exec rake db:create db:schema:load
       - run: rake
@@ -15,6 +16,7 @@ jobs:
       - image: circleci/postgres:9.4.12-alpine
     working_directory: ~/testing-workflows
     steps:
+      - checkout
       - run: bundle install --path vendor/bundle
       - run: bundle exec rake db:create db:schema:load
       - run: rake
@@ -24,6 +26,7 @@ jobs:
       - image: circleci/postgres:9.4.12-alpine
     working_directory: ~/testing-workflows
     steps:
+      - checkout
       - run: bundle install --path vendor/bundle
       - run: bundle exec rake db:create db:schema:load
       - run: rake
