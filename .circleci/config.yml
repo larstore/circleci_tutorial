@@ -1,8 +1,13 @@
-version: 2
+version: 2.0
 jobs:
-  build:
+  "<workflow1>":
     docker:
-      - image: circleci/golang:latest
+      <image>
+    working_directory: ~/testing-workflows
     steps:
-      - checkout
-      - run: go version
+      - <command>
+workflows:
+  version: 2
+  build:
+    jobs:
+      - workflow1
