@@ -6,7 +6,7 @@ jobs:
       - image: circleci/postgres:9.4.12-alpine
     working_directory: ~/testing-workflows
     steps:
-      - <command>
+      - run: echo "A first hello"
 workflows:
   version: 2
   build:
