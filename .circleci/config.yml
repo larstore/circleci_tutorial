@@ -6,9 +6,31 @@ jobs:
       - image: circleci/postgres:9.4.12-alpine
     working_directory: ~/testing-workflows
     steps:
-      - run: echo "A first hello"
+      - run: bundle install --path vendor/bundle
+      - run: bundle exec rake db:create db:schema:load
+      - run: rake
+  testflow1:
+    docker:
+      - image: circleci/ruby:2.3
+      - image: circleci/postgres:9.4.12-alpine
+    working_directory: ~/testing-workflows
+    steps:
+      - run: bundle install --path vendor/bundle
+      - run: bundle exec rake db:create db:schema:load
+      - run: rake
+  testflow2:
+    docker:
+      - image: circleci/ruby:2.4
+      - image: circleci/postgres:9.4.12-alpine
+    working_directory: ~/testing-workflows
+    steps:
+      - run: bundle install --path vendor/bundle
+      - run: bundle exec rake db:create db:schema:load
+      - run: rake
 workflows:
   version: 2
   build:
     jobs:
       - testflow
+      - testflow1
+      - testflow2
